@@ -1,0 +1,13 @@
+1.ps axo command | grep -E ' .+'
+2.mount | grep -E ' /sys/| /dev/' lub mount | grep -E "[[:space:]]((\dev\)|(\sys\))"
+3.journalctl -b | grep -i -E "PCI|USB"
+4.grep -E '^[0-9]{9}[13579][0-9]$' numery.txt
+5.grep -E '^99[0-9]{7}[02468][0-9]$' numery.txt
+6.grep -E '^[a-zA-Z0-9]{1,16}@[a-z]+\.[a-z]{2,}$' adresy.txt
+7.grep -E '.{8,}' hasla.txt |grep -E [A-Z] |grep -E [a-z] | grep -E [0-9]  |grep -E '[!@#$%^&*()]' 
+8. grep -r "strlen" git-master/
+9.ip link | grep -Eo '([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}'
+10. ip addr | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+
+

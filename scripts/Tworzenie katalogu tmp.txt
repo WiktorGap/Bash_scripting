@@ -1,0 +1,27 @@
+Tworzenie katalogu /tmp/data/random
+
+mkdir -p /tmp/data/random
+for i in {1..5}; do
+    dd if=/dev/urandom of=/tmp/data/random/file$i bs=10M count=1
+done
+
+
+Tworzenie katalogu /tmp/data/empty
+
+mkdir -p /tmp/data/empty
+for i in {1..5}; do
+    dd if=/dev/zero of=/tmp/data/empty/file$i bs=10M count=1
+done
+
+
+Tworzenie katalogu  /tmp/data/various
+
+mkdir -p /tmp/data/various
+git clone https://github.com/MiloszKrajewski/SilesiaCorpus.git
+
+for file in /tmp/data/SilesiaCorpus/*.zip; do
+    unzip -o "$file" -d /tmp/data/various
+done
+
+
+

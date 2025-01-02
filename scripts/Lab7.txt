@@ -1,0 +1,78 @@
+1. head -n 1 iris.csv
+2. tail -n +2 iris.csv
+3. sed 's/Setosa/1/g; s/Versicolor/2/g; s/Virginica/3/g' iris.csv
+4. cut -d',' -f5 iris.csv | tail -n +2 | sort | uniq
+5. awk -F, 'NR > 1 { print $1 + $2 + $3 + $4 }' iris.csv
+6. LC_ALL=C awk -F, 'NR > 1 { total += $2; count++ } END { print total / count }' iris.csv
+7. awk -F, 'NR == 2 || $4 > max { max = $4; line = $0 } END { print line }' iris.csv
+8.awk -F, '$1 > 7 { print $5 }' iris.csv
+9.awk -F, '{ printf "%d\t%d\t%d\t%d\t%s\n", $1, $2, $3, $4, $5 }' iris.csv
+10. head -n 1 iris.csv > shuffled_iris.csv
+tail -n +2 iris.csv | shuf >> shuffled_iris.csv
+cat shuffled_iris.csv 
+
+
+
+#!/bin/bash
+
+# Funkcja sprawdzająca, czy liczba jest całkowita
+check_integer() {
+    if [[ "$1" =~ ^-?[0-9]+$ ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Funkcja sprawdzająca, czy liczba jest liczbą pierwszą
+is_prime() {
+    local num=$1
+    if ((num <= 1)); then
+        return 1
+    fi
+    for ((i = 2; i * i <= num; i++)); do
+        if ((num % i == 0)); then
+            return 1
+        fi
+    done
+    return 0
+}
+
+# Główna część programu
+prime_count=0
+
+while true; do
+    echo "Podaj liczbę:"
+    read number
+
+    # Sprawdzamy, czy liczba jest całkowita
+    if ! check_integer "$number"; then
+        echo "To nie jest liczba całkowita. Spróbuj ponownie."
+        continue
+    fi
+
+    # Jeśli liczba jest zerem, kończymy program
+    if ((number == 0)); then
+        echo "Program zakończony. Liczba liczb pierwszych: $prime_count"
+        break
+    fi
+
+    # Jeśli liczba jest dodatnia, sprawdzamy, czy jest pierwsza
+    if ((number > 0)); then
+        if is_prime "$number"; then
+            echo "$number" >> prime.txt
+            ((prime_count++))
+        fi
+    # Jeśli liczba jest ujemna, obliczamy wartość bezwzględną i zapisujemy do pliku
+    elif ((number < 0)); then
+        abs_number=$(( -number ))
+        echo "$abs_number" >> abs.txt
+    fi
+done
+
+
+
+
+
+
+

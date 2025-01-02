@@ -1,0 +1,9 @@
+1.echo "plik do zapisania" > plik.txt
+2.echo "nadpisuje plik do zapisania" >> plik.txt
+3. alt + ] dodawanie
+alt + [ usuniecie wciecia
+4. alt + o
+5. vim ~/.vimrc 
+:set expandtab 
+:set tabstop= 4
+:set shiftwidth=4
